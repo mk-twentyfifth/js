@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <style></style>
+
+    <div onclick="function2()" style="padding: 20px; background-color: pink">
+      DIV2
+      <div
+        onclick="function1(event)"
+        style="padding: 10px; background-color: red"
+      >
+        DIV1
+      </div>
+    </div>
+
+    stop propagation:
+    <input type="checkbox" id="check" />
+
+    <script>
+      function function1(event) {
+        alert("DIV1");
+        console.log(event.currentTarget);
+        event.stopPropagation();
+        if (document.getElementById("check").checked) {
+          console.log(event.target);
+        }
+      }
+
+      function function2(event) {
+        alert("DIV 2");
+        console.log(event);
+      }
+    </script>
+  </body>
+</html>
