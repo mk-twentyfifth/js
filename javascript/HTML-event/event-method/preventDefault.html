@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>preventDefault</title>
+  </head>
+
+  <body>
+    <form>
+      <label for="id-checkbox">Checkbox:</label>
+      <input type="checkbox" id="id-checkbox" />
+    </form>
+
+    <div id="output-box"></div>
+    <script>
+      const checkbox = document.getElementById("id-checkbox");
+
+      checkbox.addEventListener("click", (event) => {
+        event.preventDefault();
+        const outputBox = (document.getElementById("output-box").innerHTML += "Prevent Default\n");
+        return;
+      });
+      console.log(checkbox.checked);
+
+      const checkboxChangeHandler = (event) => {
+        console.log(checkbox.checked);
+      };
+
+      checkbox.addEventListener("change", checkboxChangeHandler);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>preventDefault + eventPropagation</title>
+  </head>
+  <body>
+    <div id="parent-div" style="border: 2px solid blue; padding: 20px">
+      <form id="my-form">
+        <label for="id-checkbox">Checkbox:</label>
+        <input type="checkbox" id="id-checkbox" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div id="output-box"></div>
+    <script>
+      const form = document.getElementById("my-form");
+      const parentDiv = document.getElementById("parent-div");
+      const outputBox = document.getElementById("output-box");
+
+      form.addEventListener("submit", (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        outputBox.innerHTML += "<p>Form submit prevented, and propagation stopped!</p>";
+      });
+
+      parentDiv.addEventListener("submit", (event) => {
+        outputBox.innerHTML += "<p>Event propagated to parent div!</p>";
+      });
+
+      const checkbox = document.getElementById("id-checkbox");
+      checkbox.addEventListener("change", () => {
+        console.log(checkbox.checked ? "Checked" : "Unchecked");
+      });
+    </script>
+  </body>
+</html>
