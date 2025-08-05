@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating closures in loops: A common mistake with Var</title>
+  </head>
+  <body>
+    <p id="help">Helpful notes will appear here</p>
+    <p>Email: <input type="text" id="email" name="email" /></p>
+    <p>Name: <input type="text" id="name" name="name" /></p>
+    <p>Age: <input type="text" id="age" name="age" /></p>
+
+    <script>
+      function showHelp(help) {
+        document.getElementById("help").textContent = help;
+      }
+
+      function setupHelp() {
+        var helpText = [
+          { id: "email", help: "Your email address" },
+          {
+            id: "name",
+            help: "Your Full Name",
+          },
+          {
+            id: "age",
+            help: "Your age (you must be over 16)",
+          },
+        ];
+
+        for (var i = 0; i < helpText.length; i++) {
+          var item = helpText[i];
+          document.getElementById(item.id).onfocus = function () {
+            showHelp(item.help);
+          };
+        }
+
+        console.log(item);
+      }
+
+      setupHelp();
+    </script>
+  </body>
+</html>
+
+<!-- The problems lies in 2 concept
+ 1. how var work 
+ 2. how closure capture variables  -->
+
+<!-- 1. VAR Concept - Whole Function Scope
+    * var has access to the Function scope meaning it does not belong to only the for loop's block but to the whole setupHelp() 
+    * each loop run the item variable is reassigned -> after the loop   finished, the items is pointing to the last object -->
+    2. Closure - capture variable by reference
+    * 
+
+
+What is Closure?
+closure is a function that remembers 
