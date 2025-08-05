@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.4/dist/FileSaver.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea id="userInput">Type your text here</textarea>
+    <button onclick="saveText()">Save as File</button>
+    <script>
+      function saveText() {
+        var text = document.getElementById("userInput").value;
+        var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "myNote.txt");
+      }
+    </script>
+  </body>
+</html>

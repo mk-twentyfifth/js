@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PizZip Example</title>
+    <script src="https://unpkg.com/pizzip@3.2.0/dist/pizzip.min.js"></script>
+    <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  </head>
+  <body>
+    <button onclick="createZip()">Create ZIP</button>
+
+    <script>
+      function createZip() {
+        // Initialize PizZip
+        var zip = new PizZip();
+
+        // Add a text file
+        zip.file("Hello.txt", "Hello, World!\nThis is a sample text file.\n");
+
+        // Create a folder and add an image (base64 example)
+        var imgFolder = zip.folder("images");
+        // Example base64 string (replace with actual base64 data of an image)
+        var imgData =
+          "R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7";
+        imgFolder.file("smile.gif", imgData, { base64: true });
+
+        // Generate the ZIP file as a blob
+        var content = zip.generate({ type: "blob" });
+
+        // Save the ZIP file using FileSaver.js
+        saveAs(content, "example.zip");
+      }
+    </script>
+  </body>
+</html>
