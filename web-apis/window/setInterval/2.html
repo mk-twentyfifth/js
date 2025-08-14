@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>setInterval 2</title>
+  </head>
+  <body>
+    <style>
+      .go {
+        color: green;
+      }
+      .stop {
+        color: red;
+      }
+    </style>
+    <div id="my_box">
+      <h3>Hello Worlds</h3>
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+    </div>
+
+    <script>
+      let intervalId; // initially undefined
+
+      function changeColor() {
+        intervalId ??= setInterval(flashText, 1000);
+        // value of setInterval = positive integer ID
+        console.info("intervalId", intervalId);
+      }
+
+      function flashText() {
+        const oElem = document.getElementById("my_box");
+        oElem.className = oElem.className === "go" ? "stop" : "go";
+      }
+
+      function stopTextColor() {
+        clearInterval(intervalId);
+        console.info("clear interval", intervalId);
+        intervalId = null;
+      }
+
+      document.getElementById("start").addEventListener("click", changeColor);
+
+      document.getElementById("stop").addEventListener("click", stopTextColor);
+    </script>
+  </body>
+</html>
